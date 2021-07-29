@@ -1,0 +1,22 @@
+@font-face {font-family: "iconfont";
+  src: url('./iconfont/iconfont.eot?t=1618370113505'); /* IE9 */
+  src: url('./iconfont/iconfont.eot?t=1618370113505#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMEAAsAAAAABsgAAAK2AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBVIFbATYCJAMICwYABCAFhG0HLxsABsgOJc2QwFDgAgVIPDw/9zv37e0zTJNqpItY0kQiFAsdYiMVspew/9Wl33KAQCE6GpMUYUp4OpRtmZ+sC0xxkWlrt8DUjt06Evg8l9NrAQUyP1Auc0w+6gUYbw1obzyKrEBCT0W8Zhf5nECLYe2EjcUr+yBFZq8LxCOVw5BSiMqyWKiERsPRDPEOpSptQu+Bt+j78S8QKSApC7BbTh4WxWDu1zunRHT/u64DAmIEdrpEgUUgExeN2SOiENmilmyCcXCsxuDr3f86sIujWoT419n1bWAQ0meSefJHrU8gY3wduJ90O7mjNDM7ODMzODXVD5OTfdPTA30XLpUWxNXaA0cunDt3qEAJHb5CtkhXwsGLmy+XCUeu9K26kp65pXSfW3CwPqM85ddE6Ft2UKSgYJqgXxG0LTsVRBFtEzS3NXdtTaZ+d+8GtB6RKNmW/mq3p3Jtef6ezw9PolMIIizKXb6+KU8RLgtKHag9ncwbzV1RfHe4ePhOaEXuGMwFqN1il+j+29943dnkBLO7v1atCQCfRyfmReHazTDMT3UHvuBPyga2ZUNhG9IjSZkvWc+FJSCWAmqwgz0+TTX237Y7VAWZiKTJEAqVSVpmLaLUagkNlWW0WLDkdKtejChyKjBvHSF0uYGkwwcKXT7QMusjSgO+oKErRLS4ivwrW00HTVvASJiTGI6MYxq1TMl18LS4sYfIcT3M8oqIM0CYQxPY7/GVC0uISdgSO5wROcC5hCVmGXgxvUZ03cI2s1QS5R6Fc7vT65Wa3uSJWgakWccQYRwRg0WMw6goi0kKunNplc/3IGRxujDWQaoLDyAYB50c8/PwDaAt0ZqDSI9CxTFCFsBxEkzCWAzYYlpE6HQWzG5epCKiOA9lQtrWyet0koZqPdvrjb/bAy1sUwpnjgjlU3ycmgAAAA==') format('woff2'),
+  url('./iconfont/iconfont.woff?t=1618370113505') format('woff'),
+  url('./iconfont/iconfont.ttf?t=1618370113505') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('./iconfont/iconfont.svg?t=1618370113505#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+/* 首页左下角语音图标 */
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 40px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yuyin:before {
+  content: "\e6c5";
+}
+

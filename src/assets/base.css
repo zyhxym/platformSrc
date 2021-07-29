@@ -1,0 +1,336 @@
+@charset "UTF-8";
+/*************************************初始化样式 start*********************************/
+html,
+body,
+ul,
+li,
+dl,
+dt,
+dd,
+div,
+input,
+table,
+select,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table,
+tr,
+th,
+td,
+button,
+p,
+a,
+img {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+}
+
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+button,
+input {
+  outline: 0px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-bottom {
+  align-items: flex-end;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.m-t-48 {
+  margin-top: 48px;
+}
+
+.text-main {
+  color: #333;
+}
+
+.text-content {
+  color: #666;
+}
+
+.text-tips {
+  color: #999;
+}
+
+.text-light {
+  color: #ccc;
+}
+
+.text-red {
+  color: #ff3f3f !important;
+}
+
+.font-lg {
+  font-size: 3.2vw;
+}
+
+.font-md {
+  font-size: 18px;
+}
+
+.font-sm {
+  font-size: 2.2vw;
+}
+
+.font-blod {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.border-b-gray {
+  border-bottom: 1px solid #eee;
+}
+
+.bg-w {
+  background-color: #fff;
+}
+.corner{
+	background-image: url(corner.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size:100% 100%;
+	background-color:#041b52
+}
+.bg-blue{
+	background-color:#041b52;
+}
+.padding-10{
+	padding:10px !important;
+}
+.text-blue{
+	color:#0074ff !important;
+}
+.text-lightblue{
+	color:#a3a5bc !important;
+}
+.text-red{
+	color:#fa2e71;
+}
+.text-cyan{
+	color:#00deff;
+}
+.text-yellow{
+	color:#ffd835;
+}
+.font-18{
+	font-size:18px !important;
+}
+.font-14{
+	font-size:14px !important;
+}
+.font-blod{
+	font-weight: 700;
+}
+/* 滚动条 */
+.scroll2 {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.scroll2::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.scroll2::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 4px;
+  background: #c0edfe;
+ /* background: -webkit-linear-gradient(#99ddff, #6ca5f5); */
+  /* Safari 5.1 - 6.0 */
+ /* background: -o-linear-gradient(#99ddff, #6ca5f5); */
+  /* Opera 11.1 - 12.0 */
+/*  background: -moz-linear-gradient(#99ddff, #6ca5f5); */
+  /* Firefox 3.6 - 15 */
+ /* background: linear-gradient(#99ddff, #6ca5f5); */
+  /* 标准的语法 */
+}
+
+.scroll2::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius:0;
+  background-color: #fff;
+}
+/* 滚动条 */
+.scroll {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.scroll::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 4px;
+  background: #858cb2;
+ /* background: -webkit-linear-gradient(#99ddff, #6ca5f5); */
+  /* Safari 5.1 - 6.0 */
+ /* background: -o-linear-gradient(#99ddff, #6ca5f5); */
+  /* Opera 11.1 - 12.0 */
+/*  background: -moz-linear-gradient(#99ddff, #6ca5f5); */
+  /* Firefox 3.6 - 15 */
+ /* background: linear-gradient(#99ddff, #6ca5f5); */
+  /* 标准的语法 */
+}
+
+.scroll::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius:0;
+  background-color: #a9b1d9;
+}
+.el-table--scrollable-y .el-table__body-wrapper::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.el-table--scrollable-y .el-table__body-wrapper::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 4px;
+  background: #858cb2;
+ /* background: -webkit-linear-gradient(#99ddff, #6ca5f5); */
+  /* Safari 5.1 - 6.0 */
+ /* background: -o-linear-gradient(#99ddff, #6ca5f5); */
+  /* Opera 11.1 - 12.0 */
+/*  background: -moz-linear-gradient(#99ddff, #6ca5f5); */
+  /* Firefox 3.6 - 15 */
+ /* background: linear-gradient(#99ddff, #6ca5f5); */
+  /* 标准的语法 */
+}
+
+.el-table--scrollable-y .el-table__body-wrapper::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius:0;
+  background-color: #a9b1d9;
+}
+.el-table__body-wrapper table{width:100% !important;}
+/* .bigpop .el-dialog{
+	background-color: transparent;
+	background: url(bigpop-bg.png) no-repeat top left;
+	background-size: 100% 100%;
+} */
+.bigpop .el-button{
+	margin-right:10px;
+}
+.bigpop i{
+	font-style:normal;
+	font-weight: 400;
+	font-size:16px;
+}
+.bigpop span.text1-title{
+	display: inline-block;
+	width:20%;
+	margin-top:10px;
+}
+.bigpop .mint-navbar{
+	background-color: #23befa !important;
+}
+.bigpop .mint-navbar .mint-tab-item.is-selected{
+	background-color: #23befa !important;
+	border-bottom: 0px solid #00deff;
+	color: #fff;
+}
+.bigpop .el-table th{background-color: #23befa !important;}
+.bigpop .el-table__row td{
+	text-align: center;
+}
+.bigpop tr.el-table__row:nth-of-type(odd):hover td{
+	background-color: #fff !important;
+}
+.bigpop tr.el-table__row:nth-of-type(even):hover td{
+	background-color: #fff !important;
+}
