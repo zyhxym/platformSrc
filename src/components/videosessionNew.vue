@@ -319,7 +319,7 @@ export default {
       if (!info.support) {
         alert('不支持WebRTC')
       } else {
-        // alert('支持WebRTC')
+        // alert('支持WebRTC！')
       }
     });
     var _mtac = { "senseHash": 0 };
