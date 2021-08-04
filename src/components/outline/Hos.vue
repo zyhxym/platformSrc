@@ -48,13 +48,15 @@
           医院负责人：<span>{{realManager}}</span>&nbsp;&nbsp;联系方式：<span>{{phone}}</span>
         </el-row>
 
-        <el-row v-show="ptshow"
-                class="tips font-14 text-lightblue">
-          待送达：<span class="text-red">{{num1}}人 </span>
-		  <el-divider direction="vertical"></el-divider>
-		  已入院：<span class="text-blue">{{num2}}人 </span>
-		  <el-divider direction="vertical"></el-divider>
-		  已出院：<span class="text-cyan">{{num3}}人</span>
+        <el-row v-show="ptshow" class="tips font-14 text-lightblue">
+
+                待送达：<span class="text-red">{{num1}}人 </span>
+            <el-divider direction="vertical"></el-divider>
+
+                已入院：<span class="text-blue">{{num2}}人 </span>
+            <el-divider direction="vertical"></el-divider>
+
+                已出院：<span class="text-cyan">{{num3}}人</span>
         </el-row>
       </div>
       <!-- <el-row v-else="ptshow"
@@ -486,22 +488,21 @@ export default {
         'hosNo': this.mid
 
       }
-      )
-        .then((response) => {
+      ).then((response) => {
 
           // console.log(response.data['results'])
           var cdata = response.data['results'][0]
+
           // console.log(cdata)
           this.item = cdata
+
           // console.log(cdata)
           this.GNo = cdata.GroupNo
-
           this.title1 = cdata.OrganizationName;
           this.LocationDescription = cdata.LocationDescription;
           this.nowLocation = [cdata.Longitude, cdata.Latitude];
           this.realManager = cdata.realManager;
           this.phone = cdata.phone;
-
 
           this.cardshow = true
           //当病人不为空 才展示下面
@@ -512,9 +513,8 @@ export default {
           // }
           if (cdata.GroupNo != null) {
             this.getpatientList(cdata.GroupNo)
-            this.getHosStatusCount(cdata.GroupNo)          }
-
-
+            this.getHosStatusCount(cdata.GroupNo)         
+          }
 
         }).catch(function (error) {
           console.log("error", error);
@@ -529,8 +529,7 @@ export default {
 
 
       }
-      )
-        .then((response) => {
+      ).then((response) => {
           var ad = response.data['results']
           // console.log(ad)
           if (ad.length > 0) {
@@ -538,8 +537,6 @@ export default {
             // console.log(ad)
             this.tablepatient = ad
           }
-
-
         }).catch(function (error) {
           console.log("error", error);
         })
@@ -551,8 +548,7 @@ export default {
         'groupNo': s
 
       }
-      )
-        .then((response) => {
+      ).then((response) => {
 
           var nn = response.data['results']
           // console.log(nn)
@@ -566,6 +562,7 @@ export default {
           console.log("error", error);
         })
     },
+
     rowClick(row, column, event) {
       this.showPatinfo = true
 
@@ -574,9 +571,11 @@ export default {
       this.getExpertList()
       this.getPatientRecord(row.PatientId)
     },
+
     handleClose(done) {
       done();
     },
+
     getPatientInfo(a) {
       axios.post('/getPatientInfo', {
         "patientId": a
@@ -940,7 +939,7 @@ export default {
             type: 'bar',
             // label: seriesLabel,
             data: d2,
-			barWidth:"16%",
+			      barWidth:"16%",
             label: {
               normal: {
                 show: true,

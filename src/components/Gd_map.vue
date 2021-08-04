@@ -69,10 +69,13 @@
 				var z = data.MessageDetail.indexOf('编号')
 				console.log(y, z)
 				var assname = data.MessageDetail.substring(y + 3, z - 4)
+
 				for (var j = 0; j < that.assList.length; j++) {
 					if (that.assList[j].LocationName == assname) {
-						ass = j
-						break
+
+							ass = j
+							break
+
 					}
 				}
 				console.log(ass)
@@ -81,6 +84,7 @@
 		},
 		data() {
 			return {
+
 				GNo:'',
 				state: window.localStorage.getItem('STATE'),
 				hospital: this.$route.params.HOSPITAL,
@@ -95,6 +99,7 @@
 				positionHos: [],
 				positionAss: [],
 				positionCar: [],
+
 				pathSimplifierIns: [],
 				marker: [],
 				navg: [],
@@ -139,6 +144,7 @@
 								infoBody: '<div class="text-lightblue" style=\"padding:0px 0px 0px 4px;\">' + that.assList[i].Description + '</div>',
 								offset: new AMap.Pixel(0, -20),
 								autoMove: true
+
 							})
 
 							infoWindow.open(that.map, that.positionAss[i])
@@ -147,14 +153,20 @@
 					}
 					//测试Hos 
 					else if (Value.H) {
-						//// 这一步用来找到到底是哪一个医院 很重要！！！ console.log(Value.H, '医院') 
+
+						// 这一步用来找到到底是哪一个医院 很重要！！！ 
+						//console.log(Value.H, '医院') 
+
 						var i = this.hosList.findIndex(item => {
 							return item.OrganizationCode == Value.H
 						})
+
 						console.log(i, '找到医院数组下标')
 						var that = this
 						var item = that.hosList[i]
 						var info = [];
+
+
 						info.push("<div style=\"padding:5px 0px 5px 4px;\">");
 						if (item.XiongtongTag == true) {
 							info.push("<b class='rcorners1'>胸痛</b>" + "&nbsp;")
@@ -192,17 +204,30 @@
 						if (item.ChuanranTag == true) {
 							info.push("<b class='rcorners1'>传染</b>" + "&nbsp;")
 						}
-						info.push("</br>" + "</br>" + item.LocationDescription + "</div>")
+						info.push("</br>" + "</br>" + "位置: " + item.LocationDescription + "</div>")
 
 
-						// 信息弹窗   医院弹窗
+						// 医院信息弹窗   接口 /getHosList
 						AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
 							var infoWindow = new SimpleInfoWindow({
 								// infoTitle: '<strong class="text-blue font-80 font-blod">' + that.hosList[i].OrganizationName + '</strong>',
 								// infoBody: info.join(""),
 
 								infoTitle: '<strong class="text-red font-5 font-blod">' + that.hosList[i].OrganizationName + '</strong>',
-								infoBody: info.join(""),
+
+								infoBody: 
+								         '<div>'
+								             +'<div class="text-lightblue" style=\"padding:0px 5px 0px 4px;font-size:15px\">' 
+												+ info.join("") 
+												+  '医院负责人：'     + that.hosList[i].realManager
+												+  '<br>联系方式：'   + that.hosList[i].phone
+												+ '<br>' + '<br>' 
+										     + '</div>' 
+
+											 + '<div style=\"padding:0px 0px 0px 1px;font-size:23px\">'						
+												+'<input id="lnglat2container" style=\"font-size:15px;font-color:red;\" type="button" class="btn text-red btn-sm" value="视频通话" onclick="videocall()"/>' 
+											 + '</div>' 
+										 + '</div>' ,
 								
 
 								//弹窗显示位置的偏移量
@@ -250,9 +275,9 @@
 												// '</button>'+ 
 
 												//  '<img src="../assets/tel.png" style="margin-bottom:5px; margin-left:5px; margin-right:0;"  @click="videocall()"/>'+
-												 '<div>' +
-												  '<img src="tel.png"/>'+
-												 '</div>' +
+												//  '<div>' +
+												//   '<img src="tel.png"/>'+
+												//  '</div>' +
 												  '<input id="lnglat2container" style=\"font-size:15px;font-color:red;\" type="button" class="btn text-red btn-sm" value="视频通话" onclick="videocall()"/>' +
 										   '</div>' +
 										   '</div>' ,
@@ -282,20 +307,20 @@
 				//传组别过去
 				axios.post('/pushVideoLeader', {
 						"GN": this.GNo
-					})
-					.then((response) => {
+
+				}).then((response) => {
 						this.$message('已发送邀请')
 
-					}).catch(function(error) {
+				}).catch(function(error) {
 						console.log("error", error);
-					})
+				})
 
-				// let routeData = this.$router.resolve({
-				//   name: "searchGoods",
-				//   query: params,
-				//   params: { mid: params.mid }
-				// });
-				// window.open(routeData.href, '_blank');
+					// let routeData = this.$router.resolve({
+					//   name: "searchGoods",
+					//   query: params,
+					//   params: { mid: params.mid }
+					// });
+					// window.open(routeData.href, '_blank');
 			},
 
 
@@ -527,12 +552,14 @@
 				}
 
 				AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
+
 					// if (!SimpleMarker.supportSvg) {
 					//   alert('当前环境不支持SVG');
 					// }
 					axios.get('/getAssemblyList', {}).then((response) => {
+
 						that.assList = response.data.results;
-						// console.log(assList)
+						console.log('当前拿到的会场列表是',assList)
 						for (var i = 0; i < that.assList.length; i++) {
 							that.positionAss[i] = new AMap.LngLat(that.assList[i].Longitude, that.assList[i].Latitude)
 							// console.log(positionAss[i])
@@ -563,20 +590,37 @@
 									'A': thisMarkerAss.assinfo.LocationNo
 								})
 
-								//信息弹窗
+								//会场信息弹窗
 								AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
 									var infoWindow = new SimpleInfoWindow({
 
-										infoTitle: '<strong class="text-blue font-18 font-blod">' + thisMarkerAss.assinfo.LocationName +
-											'</strong>',
-										infoBody: '<div class="text-blue font-18 font-blod" style=\"padding:0px 0px 0px 4px;\">' +
+										infoTitle: '<strong class="text-blue font-5 font-blod">' + thisMarkerAss.assinfo.LocationName + '</strong>',
+										infoBody: '<div class="text-blue font-5 font-blod" style=\"padding:0px 0px 0px 4px;\">' +
 											thisMarkerAss.assinfo.Description + '</div>',
+										
+										//新写的 把 assinfo.LocationName 会场1 改成了 assinfo.Description
+
+										// infoTitle: '<strong class="text-red font-5 font-blod">' + thisMarkerAss.assinfo.Description + '</strong>',
+
+										// infoBody: 
+										// 		'<div>'
+										// 			+'<div class="text-lightblue" style=\"padding:0px 5px 0px 4px;font-size:15px\">' 
+										// 				+ info.join("") 
+										// 				+  '会场负责人：'    + thisMarkerAss.assinfo.Manager
+										// 				+  '<br>联系方式：'  + thisMarkerAss.assinfo.phone
+										// 				+ '<br>' + '<br>' 
+										// 			+ '</div>' 
+
+										// 			+ '<div style=\"padding:0px 0px 0px 1px;font-size:23px\">'						
+										// 				+'<input id="lnglat2container" style=\"font-size:15px;font-color:red;\" type="button" class="btn text-red btn-sm" value="视频通话" onclick="videocall()"/>' 
+										// 			+ '</div>' 
+										// 		+ '</div>',
+
 										offset: new AMap.Pixel(0, -20),
 										autoMove: true
 
 									})
 									infoWindow.open(mapObj, thisMarkerAss.C.position)
-
 								})
 							})
 						}
@@ -671,9 +715,9 @@
 
 
 										info.push("</br>" + "</br>" + thisMarkerHos.hosinfo.LocationDescription + "</div>")
-										// info.push("<p class='input-item'>地址 :北京市朝阳区望京阜荣街10号首开广场4层</p></div>");
+									
 
-										//信息弹窗
+										//医院信息弹窗
 										AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
 											var infoWindow = new SimpleInfoWindow({
 												infoTitle: '<strong class="text-blue font-18 font-blod">' + thisMarkerHos.hosinfo.OrganizationName +
@@ -726,17 +770,16 @@
 									});
 								markerCar[i].carinfo = that.carList[i];
 
-
-
 								markerCar[i].on('click', function() {
 									var thisMarkerCar = this;
 									that.getELID({
 										'C': thisMarkerCar.carinfo.CarNo
 									})
 
-                                    //信息弹窗
+                                    //车辆信息弹窗
 									AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
 										var infoWindow = new SimpleInfoWindow({
+
 											//标题
 											infoTitle: '<strong class="text-blue font-18 font-blod">' + thisMarkerCar.carinfo.CarName + '</strong>',
 
@@ -751,14 +794,11 @@
 											offset: new AMap.Pixel(0, -20),
 											autoMove: true
 										})
+
 										infoWindow.open(mapObj, thisMarkerCar.C.position)
 									})
 
 								})
-
-
-
-
 							}
 						}
 						that.intervalid1 = setInterval(() => {
