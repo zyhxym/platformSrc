@@ -6,8 +6,9 @@
       <!-- <el-row :gutter="1"> -->
       <!-- <el-row :gutter="1" style="padding-top:10px;" > -->
         <el-container >
-          <!-------------------------------------- 第一大列 搜索分栏 ---------------------------->
-          <el-aside width="200px" style="height: 650px;  text-align: right; font-size: 30px; margin-top: 55px">
+
+          <!-------------------------------------- 第一大列 搜索分栏 ------------------------------------------>
+          <el-aside width="200px" style="height: 650px;  text-align: right; font-size: 19px; margin-top: 55px">
             <el-col  :offset="1" >
                   <!-- 搜索框 -->
                 <el-row>
@@ -19,34 +20,38 @@
                     </div>
                     </br>
                 </el-row>
+
                 <!-- 树形控件 急救站组 -->
                 <el-row >   
                   <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick" ></el-tree>
                 </el-row>
             </el-col>
           </el-aside>
-          <!------------------------------------- 第二大宽列 头像列 ----------------------------->
+
+          <!------------------------------------- 第二大宽列 头像列 -------------------------------------------->
          <!-- <el-main style="border: 5px solid #eee">  -->
                  <!-- 加上边框是这么写的 -->
          <el-main >
-          <el-col  style="padding-top:0px;">
+          <el-col  style="padding-top:5px;">
               <!-- 第一行 头像窗口 -->
-              <el-row  type="flex" justify="center">           
+              <el-row  type="flex" justify="center">
+            
                 <!-- 第一列 现场通话 -->
-                <el-col :span="7">
+                <el-col :span="6">
                   <div v-if="showass">
                     <div class="text-v">
                       现场通话
                     </div>
                     <video id="501"
                           playsinline=""
-                          width="400"
+                          width="350"
                           height="400"
                           autoplay
                           controls
                           poster="../assets/tx1.jpg"
                           style="object-fit:cover">
-                    </video>                    
+                    </video>
+                    
                   </div>
                   <div v-else>
                     <div class="text-v">
@@ -55,7 +60,7 @@
                     <video id="Android11"
                           controls
                           autoplay
-                          width="400"
+                          width="350"
                           height="400"
                           poster="../assets/tx1.jpg"
                           playsinline="">
@@ -63,39 +68,58 @@
                   </div>
                 </el-col>
                 <!-- 第二列 车辆通话 -->
-                <el-col :span="7">
+                <el-col :span="6">
                   <div class="text-v">
                     车辆通话
                   </div>
                   <video id="502"
                         playsinline=""
-                        width="400"
+                        width="350"
                         height="400"
                         poster="../assets/tx1.jpg"
                         autoplay
                         controls
                         style="object-fit:cover">
-                  </video>                  
+                  </video>
+                  
                 </el-col>
                 <!-- 第三列 医院通话 -->
-                <el-col :span="7">
+                <el-col :span="6">
                   <div class="text-v">
-                    医院通话
+                    医院通话1
                   </div>
                   <video id="310"
                         playsinline=""
-                        width="400"
+                        width="350"
                         height="400"
                         poster="../assets/tx1.jpg"
                         autoplay
                         controls
                         style="object-fit:cover">
-                  </video>                 
+                  </video>
+                  
+                </el-col>
+                <!-- 第四列 现场通话 -->
+                <el-col :span="6">
+                  <div class="text-v">
+                    医院通话2
+                  </div>
+                  <video id="310"
+                        playsinline=""
+                        width="350"
+                        height="400"
+                        poster="../assets/tx1.jpg"
+                        autoplay
+                        controls
+                        style="object-fit:cover">
+                  </video>
+                  
                 </el-col>
               </el-row>
+
               <!-- 第二行 头像窗口 -->
-              <el-row :gutter="10" style="margin-top:10px;margin-bottom:0px;" type="flex" justify="center">
-                <el-col :span="7">
+              <el-row :gutter="10" style="margin-top:15px;margin-bottom:15px;" type="flex" justify="center">
+                <el-col :span="6">
                 <!--  <video id="myPlayer"
                         width="450"
                         height="400"
@@ -108,34 +132,31 @@
                   <div class="text-v">
                     现场实况
                   </div>
-                  <!-- <video id="cmsv6flash"
+                  <video id="Android11"
                         playsinline=""
-                        width="400"
+                        width="350"
                         height="400"
                         poster="../assets/tx1.jpg"
                         autoplay
                         controls
                         style="object-fit:cover">
-                  </video>   --> 
-                  <div style="margin:0 auto;">
-        <div style= "width:400px;height:400px;">
-            <iframe ref="iframe" width="400" height="400" allowfullscreen="true" scrolling="no"></iframe>
-       </div>
-       </div>              
+                  </video>
+                  
                 </el-col>
-                <el-col :span="7">
+                <el-col :span="6">
                   <div class="text-v">
-                    指 挥
+                    指挥
                   </div>
                   <video id="901"
                         playsinline=""
-                        width="400"
+                        width="350"
                         height="400"
                         poster="../assets/tx1.jpg"
                         autoplay
                         controls
                         style="object-fit:cover">
-                  </video>                 
+                  </video>
+                  
                   <!-- <video id="myPlayer2"
                           width="450"
                           height="400"
@@ -150,26 +171,48 @@
                       <span>车辆实况</span>
                     </div> -->
                 </el-col>
-                <el-col :span="7">
+                <el-col :span="6">
                   <div class="text-v">
-                    专 家
+                    专家
                   </div>
                   <video id="401"
                         playsinline=""
-                        width="400"
+                        width="350"
                         height="400"
                         poster="../assets/tx1.jpg"
                         controls
                         autoplay
                         style="object-fit:cover">
-                  </video>                  
-                  <video id="local"
+                  </video>
+                  
+                  <!-- <video id="local"
                     height="0">
-              </video>
+              </video> -->
+                </el-col>
+                <el-col :span="6">
+                  <div class="text-v">
+                    空闲
+                  </div>
+                  <video id="401"
+                        playsinline=""
+                        width="350"
+                        height="400"
+                        
+                        controls
+                        autoplay
+                        style="object-fit:cover">
+                  </video>
+                
+                  <!-- <video id="local"
+                    height="0">
+              </video> -->
                 </el-col>
               </el-row>
-          </el-col>              
+          </el-col> 
+        
+     
         </el-main>
+
         </el-container>  
       <!-- </el-row> -->
     </div>
@@ -191,10 +234,13 @@ export default {
   },
   data() {
     return {
+      // src1: "..assets/mda-ihutmh8752y9rdbw.mp4"
+      src1: '/static/media/mda-ihutmh8752y9rdbw.mp4',
       //判断现场还是眼镜 GYX 19/9/14
       showass: true,
       showcar: true,
 
+      GNo:'',
       showPatinfo: false,
       perinfo: {},
       ExpertList: [],
@@ -208,53 +254,66 @@ export default {
 
       // 右侧树形图控件
       data: [{
-          label: '急救站组',
-          children: [{
-            label: '急救站1',
-           
-          },
-          {
-            label: '急救站2',
-            
-          }]
+              label: '急救站组',
+              children: [{
+                
+                label: '杭州奥体中心',
+              
+              },
+              {
+                label: '黄龙体育中心',
+                
+              },
+              {
+                label: '大运河亚运公园',
+                
+              }]
+
         }, {
-          label: '救护车组',
-          children: [{
-            label: '救护车1',
-            
-          }, {
-            label: '救护车2',
-           
-          }]
+                label: '救护车组',
+                children: [{
+                  label: '救护车1',
+                  
+                }, {
+                  label: '救护车2',
+                
+                }]
+
         }, {
-          label: '医院组',
-          children: [{
-            label: '医院1',
-            
-          }, {
-            label: '医院2',
-           
-          }]
+                label: '医院组',
+                children: [{
+                  label: '浙医二院',
+                  
+                }, {
+                  label: '杭州市第一人民医院',
+                
+                },
+                {
+                  label: '浙江省人民医院',
+                
+                }]
+
         },{
-          label: '后勤组',
-          children: [{
-            label: '后勤人员1',
-            
-          }, {
-            label: '后勤人员2',
-           
-          }]
+
+                label: '后勤组',
+                children: [{
+                  label: '后勤人员1',
+                  
+                }, {
+                  label: '后勤人员2',
+                
+                }]
 
         },
         {
-          label: '专家组',
-          children: [{
-            label: '专家1',
-            
-          }, {
-            label: '专家2',
-           
-          }]
+                label: '专家组',
+                children: [{
+                  label: '专家1',
+                  
+                }, {
+                  label: '专家2',
+                
+                }]
 
         },
         {
@@ -298,17 +357,14 @@ export default {
 
     // var player = new EZuikit.EZUIPlayer('myPlayer');
     // var player2 = new EZuikit.EZUIPlayer('myPlayer2');
-    //单兵地址
-    this.$refs.iframe.contentWindow.location.replace(
-                "http://47.105.139.224:8088/808gps/open/player/video.html?lang=zh&devIdno=192982&account=zjsys&password=000000"
-            );
-        
+    // console.log(this.$route.query.id)
+    // console.log(this.$route.params.id)
 
     window.configData = {
       "sdkappid": 1400203281,
       "users": [{
         "userId": "web01",
-        "userToken": "eJwtzMEKgkAUheF3mXXI9d7MEloUJRRRwYSUO2NGuVrNYKZB9O6Zujzfgf8jTjvp1LoUgUAHxKjbrPSj4pQ7bvQV3OF4qiKxlpUI3DEAAuHU7R-9tlzq1j3PQwDoteL73yboAxGBP1Q4a7s3TMAcGhPabU3WLPIihyIyGK820XktaZmls-2LjjK8zMX3B-JvMNo_"
+        "userToken": "eJxlz1FPgzAQwPF3PgXhFWOOQgVNfHCEbSi6bIrJfCGFFtahUNtuDBe-uxGXiPFef--L5Y6GaZrWU-J4Toqi3TU6071glnllWmCd-aIQnGZEZ66k-5AdBJcsI6VmckAHY4wAxg2nrNG85KeiYzk4I1a0zoYbP-seAAIXBX8SXg14H6VhvAwnUQmzSFFmvye1nAe7DseL*brH5G7abpbslmjqfnhou*ri6kWRvC9eSULTzboiF8KuH-zn1A73is4mOb3p48XWn*rI865HJzV-Y6eHLjFyEQ78ke6ZVLxthgCBgx3kwvdYxqfxBe3wXRE_"
       }]
     }
 
@@ -319,7 +375,7 @@ export default {
       if (!info.support) {
         alert('不支持WebRTC')
       } else {
-        // alert('支持WebRTC！')
+        // alert('支持WebRTC')
       }
     });
     var _mtac = { "senseHash": 0 };
@@ -362,7 +418,7 @@ export default {
 
 
     function onKickout() {
-      //alert("on kick out!");
+      alert("on kick out!");
     }
 
     function quitRTC() {
@@ -417,11 +473,11 @@ export default {
         console.log(id);
 
         //这里判断是现场通话还是AR眼镜 GYX 19/9/14
-        if (id == "Android11") {
-          that.showass = false
-          console.log('出现了AR')
-        }
-        else 
+        // if (id == "Android11") {
+        //   that.showass = false
+        //   console.log('出现了AR')
+        // }
+        // else 
           if (id == "501") {
           that.showass = true
           console.log('出现了现场通话')
@@ -641,7 +697,6 @@ export default {
       return userToken;
     }
 
-
   },
   destoryed() {
     // 解绑全局事件
@@ -652,38 +707,134 @@ export default {
 
     //  下面这个handle是树形控件的
      handleNodeClick(data) {
-        console.log(data);
+
+        console.log('树形控件已点击', '这个树形控件的标签是：',data.label,'这个树形控件的孩子是：', data.children)
+             
+            if( data.label == '杭州奥体中心' ){
+
+              this.GNo = 'G01'
+
+            }else if( data.label == '黄龙体育中心' ){
+
+              this.GNo = 'G02'
+
+            }else if( data.label == '大运河亚运公园' ){
+
+              this.GNo = 'G11'
+
+            }else if( data.label == '救护车1' ){
+
+              this.GNo = 'G03'
+
+            }else if( data.label == '救护车2' ){
+
+              this.GNo = 'G04'
+
+            }else if( data.label == '浙医二院' ){
+
+              this.GNo = 'G05'
+
+            }else if( data.label == '杭州市第一人民医院' ){
+
+              this.GNo = 'G06'
+
+            }else if( data.label == '浙江省人民医院' ){
+
+              this.GNo = 'G33'
+
+            }else if( data.label == '专家1' ){
+
+              this.GNo = 'G90'
+
+            }else if( data.label == '专家2' ){
+
+              this.GNo = 'G91'
+
+            
+            }else{
+              this.GNo = ''
+            }
+
+           //传组别过去
+            axios.post('/pushVideoLeader', {
+
+                "GN": this.GNo
+
+            }).then((response) => {
+
+                 if(this.GNo == 'G01' ){
+                   this.$message('已发送视频邀请给杭州奥体中心急救站')
+
+                 }else if(this.GNo == 'G02' ){
+                   this.$message('已发送视频邀请给黄龙体育中心急救站')
+
+                 }else if(this.GNo == 'G11' ){
+                   this.$message('已发送视频邀请给大运河亚运公园急救站')
+
+                 }else if(this.GNo == 'G03' ){
+                   this.$message('已发送视频邀请给救护车1')
+
+                 }else if(this.GNo == 'G04' ){
+                   this.$message('已发送视频邀请给救护车2')
+
+                 }else if(this.GNo == 'G05' ){
+                   this.$message('已发送视频邀请给浙医二院')
+
+                 }else if(this.GNo == 'G06' ){
+                   this.$message('已发送视频邀请给杭州市第一人民医院')
+
+                 }else if(this.GNo == 'G33' ){
+                   this.$message('已发送视频邀请给浙江省人民医院')
+
+                 }else if(this.GNo == 'G90' ){
+                   this.$message('已发送视频邀请给专家1')
+
+                 }else if(this.GNo == 'G91' ){
+                   this.$message('已发送视频邀请给专家2')
+                 }
+
+
+            }).catch(function(error) {
+                console.log("error", error);
+            }) 
+                     
      },
-
-
+     
     sendinfo() {
       axios.post('/pushVideoAll', {
-      }
-      )
-        .then((response) => {
-          console.log('yitongzhi')
-        }).catch(function (error) {
-          console.log("error", error);
-        })
 
+      }).then((response) => {
+
+        console.log('yitongzhi')
+
+      }).catch(function (error) {
+
+        console.log("error", error);
+
+      })
     },
+
     getPatientInfo(val) {
       axios.post('getPatientInfo', {
-        "patientId": val
+
+            "patientId": val
+
       }).then(res => {
-        console.log(res.data.results[0])
-        // var cdata = 'qioalelimam'
-        var tt = res.data.results[0]
-        // this.choosenpatient = row.PatientId
-        this.perinfo = tt
-        this.curpatient = tt
-        this.type = 'A'
-        this.shake($("#myexample"), "red", 4)
+
+            console.log(res.data.results[0])
+            // var cdata = 'qioalelimam'
+            var tt = res.data.results[0]
+            // this.choosenpatient = row.PatientId
+            this.perinfo = tt
+            this.curpatient = tt
+            this.type = 'A'
+            this.shake($("#myexample"), "red", 4)
 
       }).catch(function (err) {
         console.log("error", err)
       })
     },
+
     handleClose(done) {
       done();
     },
@@ -695,27 +846,32 @@ export default {
     // viewPMH(ss) {
     //   this.showPMH = true
     // },
-    shake(ele, cls, times) {//边框闪烁   
+
+    shake(ele, cls, times) {
+      
+      //边框闪烁   
       //ele要闪动的元素 cls闪动的类 times 闪动几次  
       var i = 0, t = false, o = ele.attr("class") + " ", c = "", times = times || 2;
       if (t) return;
-      t = setInterval(function () {     
-        i++; 
-        c = i % 2 ? o + cls : o; 
-        ele.attr("class", c);
-        if (i == 2 * times) { 
-          clearInterval(t); 
-          ele.removeClass(cls);
-         }      
-         
-         }, 200);
+      t = setInterval(       
+      function(){   
+
+            i++; 
+            c = i % 2 ? o + cls : o; 
+            ele.attr("class", c);
+            if (i == 2 * times) { 
+                clearInterval(t); 
+                ele.removeClass(cls);
+            }              
+      }, 200);
+
     },
     getExpertList() {
-      console.log('推送专家')
-      this.showPatinfo = true
-      axios.get('/getExpertList', {
+          console.log('推送专家')
+          this.showPatinfo = true
+          axios.get('/getExpertList', {
 
-         }
+          }
       )
         .then((response) => {
           this.ExpertList = response.data.results
@@ -774,10 +930,8 @@ export default {
       }, function (info) {
         // console.debug(info)
       });
-    },
-
- 
-
+    }
+    // 返回一些有用的函数
   }
 }
 </script>
