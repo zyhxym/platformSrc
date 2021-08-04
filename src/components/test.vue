@@ -133,21 +133,19 @@
 									</el-table-column>
 								</el-table>
 							</div>
-
 						</div>
                 </div>
                 <br>
-
 				<!-----------------------------------------------------第二个表 后送状态跟踪表 ---------------------------------------------------->
 				<el-row style="margin-top:30px;">
 				        <!-- 表头 -->
 					<div class="picture_header flex align-center">
 						<img src="../assets/icon-6.png" />
-						<span @click="click1()" style="cursor:pointer">后送状态跟踪</span>
+						<span @click="" style="cursor:pointer">后送状态跟踪</span>
 					</div>
 				        <!-- 表体 -->
 						<!-- 设置cellStyle是一个函数 判断固定单元格字体为红色 写在下面的methods里面 -->
-                 	<el-table  :data="PatientStatus" size="small" height="93" :cell-style="cellStyle" :header-cell-style="{'background-color': '#a0cfff','color': '#303133', 'text-align':'center',padding:0,'font-size':'18px'}">
+                 	<el-table  :data="PatientStatus" size="small" height="93" @row-click="rowClick" :cell-style="cellStyle" :header-cell-style="{'background-color': '#a0cfff','color': '#303133', 'text-align':'center',padding:0,'font-size':'18px'}">
 				 															<!-- :cell-style="{ padding:0,'background-color': '#c6e2ff','color': '#303133','text-align':'center','font-size':'16px'}" -->
 			                                                			
 							<el-table-column min-width="50"  prop="PatientId"  			label="编号">
@@ -168,7 +166,7 @@
 				    <!------------------------ 智能调度表头 ----------------->
 				   <div class="picture_header flex align-center">
 						<img src="../assets/icon-6.png" />
-						<span @click="click1()" style="cursor:pointer">智能调度</span>
+						<span @click="" style="cursor:pointer">智能调度</span>
 
 							<!-- 三个按钮 -->
 							<el-row style="margin-top:10px;">
@@ -183,7 +181,7 @@
 										</el-button>	
 
 										<!-- <el-button @click="dialogVisible = true" style="font-size:20px; padding: 8px 16px;"> -->
-										<el-button @click="dialogVisible = true" style="font-size:20px; padding: 8px 16px;">
+										<el-button @click="dialogGlobal = true" style="font-size:20px; padding: 8px 16px;">
 										      应急预案查询
 										</el-button>
 										<el-button @click="cancel()" style="font-size:20px; padding: 8px 16px;">
@@ -195,7 +193,7 @@
 				    </div>
 				    
 					<!--------------------------------------- 智能调度表体 表头列标题字号16 表内字号15------------------------->
-                    <el-table  :data="tableData2" size="small" max-height="210" 
+                    <el-table  :data="tableData2" size="small" height="210" 
 						  	   :header-cell-style ="{'font-size':'17px','background-color': '#a0cfff','color': '#303133', 'text-align':'center',padding:0}"
 						       :cell-style ="       {'font-size':'15px','background-color': '#c6e2ff','color': '#303133', 'text-align':'center', padding:0}">
 
@@ -203,7 +201,7 @@
 							</el-table-column>
 							<el-table-column prop="Diagnose"  		label="病情">
 							</el-table-column>
-							<el-table-column prop="Request"    		label="特殊需求" >
+							<el-table-column prop="SpecialTag"    		label="特殊标签" >
 							</el-table-column>
 							<el-table-column prop="CarName"    		label="推荐车辆" > 
 							</el-table-column>
@@ -243,7 +241,7 @@
 						<div v-if="card=='first'">
 							
 							<!-- handle函数是从下面向上面的表推送 -->
-							<el-table :data="PrepareSendList" size="small" max-height="200" 
+							<el-table :data="PrepareSendList" size="small" height="240" 
 							                              :cell-style = "{padding:0,'background-color': '#c6e2ff','color': '#303133','font-size':'16px'}"
 							 @cell-click="handleSelect"  :header-cell-style = "{'background-color': '#a0cfff','color': '#303133', 'text-align':'left',padding:0,'font-size':'16px'}">
 									
@@ -301,7 +299,7 @@
 						</el-table> -->
 
                         <!-- 原假数据  :data="PatientList" -->
-						<el-table :data="AllReportedList" size="small" max-height="200" 
+						<el-table :data="AllReportedList" size="small" height="240" 
 							                              :cell-style = "{padding:0,'background-color': '#c6e2ff','color': '#303133','font-size':'16px'}"
 							 @cell-click="handleSelect"  :header-cell-style = "{'background-color': '#a0cfff','color': '#303133', 'text-align':'left',padding:0,'font-size':'16px'}">
 							
@@ -1376,19 +1374,16 @@
 		sockets: {
 			orderresult: function(data) {
 
-				console.log('￥￥￥￥￥￥￥￥￥')
+				console.log('orderresult')
 				//data表示一条socket消息 即调用一次emerg接口会触发6次orderresult函数
 				console.log(data)
-
-				// console.log(data.Type)
-				// console.log(data.Classification)
 				this.doCheck(data)	  
 
 			},
 			news: function(data) {
-				               
+				console.log('news')             
 				// 推送来的新消息切换标签页功能
-				// this.switch(data)
+				this.switch(data)
 
                 this.getPatientStatusLog()
 				this.getPrepareSendList()
@@ -1396,11 +1391,12 @@
 
 				this.getmsg()
 				this.getReportedPatientList()
-				console.log('news信息收到')
+				
 
 			},
 			news1: function(data) {
-				// this.switch()
+				console.log('news1')
+				this.switch(data)
 
 				this.getPatientStatusLog()
 				this.getPrepareSendList()
@@ -1408,16 +1404,11 @@
 
 				this.getmsg()
 				this.getReportedPatientList()
-				console.log('news1信息收到')
+				
 
 			},
 			alert: function(data) {
-				console.log(11111111111111111111111111111111111111111)
-
-				console.log(data)
-
-				//打印data的类型 
-				console.log(data.MessageType,"这是他的类型")
+				console.log("alert")
 
 				this.switch(data)
 				this.getPatientStatusLog()
@@ -1433,13 +1424,11 @@
 				this.getPatientRecord(data.AssemblyGroup)
 				this.showPatinfo = true
 				this.$nextTick(() => {
-					this.switch(data)
-					
 					this.getmsg()
 				})
 			},
 			help: function(data) {
-				// this.switch()
+				this.switch(data)
 				this.getPatientStatusLog()
 				this.getPrepareSendList()
 				this.getAllReportedList()
@@ -1627,101 +1616,66 @@
 
 			// 智能调度
 			tableData2: [
+				
 				// {
-				// 	PatientId: "",
-				// 	Diagnose: "",
-				// 	Request: "",
+				// 	PatientId: "11114",
+				// 	Diagnose: "急性心肌梗死",
+				// 	Request: "胸痛中心",
+				// 	// CarName: "急救车1",
+				// 	// OrganizationName: "医院3",
 				// 	CarName: "",
-				// 	OrganizationName: ""
-				// },
-				// {
-				// 	PatientId: "",
-				// 	Diagnose: "",
-				// 	Request: "",
-				// 	CarName: "",
-				// 	OrganizationName: ""
-				// },
-				// {
-				// 	PatientId: "",
-				// 	Diagnose: "",
-				// 	Request: "",
-				// 	CarName: "",
-				// 	OrganizationName: ""
-				// },
-				// {
-				// 	PatientId: "",
-				// 	Diagnose: "",
-				// 	Request: "",
-				// 	CarName: "",
-				// 	OrganizationName: ""
-				// },
-				// {
-				// 	PatientId: "",
-				// 	Diagnose: "",
-				// 	Request: "",
-				// 	CarName: "",
-				// 	OrganizationName: ""
-				// }
+				// 	OrganizationName: "",
+				// 	CarGroup:"C01",
+				// 	HosGroup:"O02",
 
-				{
-					PatientId: "11114",
-					Diagnose: "急性心肌梗死",
-					Request: "胸痛中心",
-					// CarName: "急救车1",
-					// OrganizationName: "医院3",
-					CarName: "",
-					OrganizationName: "",
-					CarGroup:"C01",
-					HosGroup:"O02",
-
-					// CarGroup:"",
-					// HosGroup:"",
+				// 	// CarGroup:"",
+				// 	// HosGroup:"",
 		
-				},
-				{
-					PatientId: "11169",
-					Diagnose: "骨折",
-					Request: "",
-					CarName: "",
-					OrganizationName: "",
-					CarGroup: "C01",
-					HosGroup: "O01",
+				// },
+				// {
+				// 	PatientId: "11169",
+				// 	Diagnose: "骨折",
+				// 	Request: "",
+				// 	CarName: "",
+				// 	OrganizationName: "",
+				// 	CarGroup: "C01",
+				// 	HosGroup: "O01",
 
-					// CarGroup: "",
-					// HosGroup: ""
+				// 	// CarGroup: "",
+				// 	// HosGroup: ""
 
-				},
-				{
-					PatientId: "11170",
-					Diagnose: "外伤",
-					Request: "",
-					CarName: "",
-					OrganizationName: "",
-					CarGroup: "",
-					HosGroup: ""
+				// },
+				// {
+				// 	PatientId: "11170",
+				// 	Diagnose: "外伤",
+				// 	Request: "",
+				// 	CarName: "",
+				// 	OrganizationName: "",
+				// 	CarGroup: "",
+				// 	HosGroup: ""
 
-				},
-				{
-					PatientId: "11183",
-					Diagnose: "昏迷",
-					Request: "",
-					CarName: "",
-					OrganizationName: "",
-					CarGroup: "",
-					HosGroup: ""
+				// },
+				// {
+				// 	PatientId: "11183",
+				// 	Diagnose: "昏迷",
+				// 	Request: "",
+				// 	CarName: "",
+				// 	OrganizationName: "",
+				// 	CarGroup: "",
+				// 	HosGroup: ""
 
-				},
-				{
+				// },
+				// {
 
-					PatientId: "11189",
-					Diagnose: "中暑",
-					Request: "",
-					CarName: "",
-					OrganizationName: "",
-					CarGroup: "",
-					HosGroup: ""
+				// 	PatientId: "11189",
+				// 	Diagnose: "中暑",
+				// 	Request: "",
+				// 	CarName: "",
+				// 	OrganizationName: "",
+				// 	CarGroup: "",
+				// 	HosGroup: ""
 
-				},
+				// },
 				
 			],
 
@@ -1833,8 +1787,8 @@
 				photosrc: global.photoUrl + "zyh_1557216080825test.jpg",
 				intervalid1: null,
 				watchID1: null,
-				card: 'first',
-				msgCard: 'msgFirst',
+				card: 'second',
+				msgCard: 'msgSecond',
 				PatientId: '',
 				selected: '病史',
 
@@ -2547,12 +2501,11 @@
 			handleSelect(row, column, cell, event) {
 				if (column.property !== "Select") {
 				      
-                     console.log(row)
-					 this.perinfo = row;
+                     console.log("handleSelect")
 					 console.log(row.PatientId, '获取一次病历')
 
 					 console.log('select属性是',row.select)
-
+					 this.getPatientInfo(row.PatientId)
 					 this.getPatientRecord(row.PatientId)
 					 this.showPatinfo = true
 
@@ -2968,63 +2921,60 @@
 				})
 			},
 
-			// switch(data){
-			// 	console.log("switch函数已触发")
-			// 	console.log(data)
-			// 	console.log(data.MessageType)
+			switch(data){
 
-			// 	if(data.MessageType == "输血"){
-			// 			console.log('我现在切换到输血需求啦')
+				if(data.MessageType == "输血"){
+						console.log('我现在切换到输血需求啦')
 						
-			// 		    this.msgCard = "msgFirst"
+					    this.msgCard = "msgFirst"
 
-			// 		    var a = data.MessageTitle
-			// 			var b = data.MessageDetail
-			// 			var c = b.split(/[\r\n]/)         //去除分隔号 
-			// 			var d = c.filter(i => i)          //去除为空的项
+					 //    var a = data.MessageTitle
+						// var b = data.MessageDetail
+						// var c = b.split(/[\r\n]/)         //去除分隔号 
+						// var d = c.filter(i => i)          //去除为空的项
 						
-			// 		    this.bloodMsg.push({
-			// 			    'title': a,
-			// 				'detail': d		
-			// 		    })
+					 //    this.bloodMsg.push({
+						//     'title': a,
+						// 	'detail': d		
+					 //    })
 						
-			// 	}else if(data.MessageType == "转运"){
-			// 		console.log('我现在切换到转运消息啦')
+				}else if(data.MessageType == "转运"){
+					console.log('我现在切换到转运消息啦')
 
-			// 		this.msgCard = "msgSecond"
-			// 		    var a = data.MessageTitle
-			// 			var b = data.MessageDetail
-			// 			var c = b.split(/[\r\n]/)         //去除分隔号 
-			// 			var d = c.filter(i => i)          //去除为空的项
+					this.msgCard = "msgSecond"
+					//     var a = data.MessageTitle
+					// 	var b = data.MessageDetail
+					// 	var c = b.split(/[\r\n]/)         //去除分隔号 
+					// 	var d = c.filter(i => i)          //去除为空的项
 						
-			// 		    this.transMsg.push({
-			// 			    'title' : a,
-			// 				'detail': d
+					//     this.transMsg.push({
+					// 	    'title' : a,
+					// 		'detail': d
 						
-			// 		    })
+					//     })
 					
 
-			// 	}else if(data.MessageType == "预警"){
-			// 			console.log('我现在切换到动态预警啦')
+				}else if(data.MessageType == "预警"){
+						console.log('我现在切换到动态预警啦')
 
-			// 		    this.msgCard = "msgFirst"
+					    this.msgCard = "msgThird"
 						
-			// 		    var a = data.MessageTitle
-			// 			var b = data.MessageDetail
-			// 			var c = b.split(/[\r\n]/)         //去除分隔号 
-			// 			var d = c.filter(i => i)          //去除为空的项
+					 //    var a = data.MessageTitle
+						// var b = data.MessageDetail
+						// var c = b.split(/[\r\n]/)         //去除分隔号 
+						// var d = c.filter(i => i)          //去除为空的项
 						
-			// 		    this.bloodMsg.push({
-			// 			    'title': a,
-			// 				'detail': d
+					 //    this.bloodMsg.push({
+						//     'title': a,
+						// 	'detail': d
 						
-			// 		    })
-			// 			console.log(this.bloodMsg)
-			// 			console.log('222222222222222222')
+					 //    })
+						// console.log(this.bloodMsg)
+						// console.log('222222222222222222')
 					
-			// 	}
+				}
 
-			// },
+			},
 
 			getChange(val) {
 				//this.overallVisiable = false
@@ -3169,14 +3119,9 @@
 
 			},
 			rowClick(row, column, event) {
-
-				console.log(row)
-				this.perinfo = row;
-
-				console.log(row.PatientId, '获取一次病历')
+				console.log(row.PatientId, 'rowClick')
 				//恢复病历初始值
-
-				// this.getPatientInfo(row.PatientId)
+				this.getPatientInfo(row.PatientId)
 				this.getPatientRecord(row.PatientId)
 				this.showPatinfo = true
 			},
@@ -3277,10 +3222,7 @@
 
 			//后送病人列表
 			getPrepareSendList() {
-				// console.log('发起一次获取列表请求')
 				axios.get('/getPrepareSendList', {}).then((response) => {
-
-					//获取消息一次
 					var array = response.data.results
 					var time = ''
 					var t1 = ''
@@ -3302,6 +3244,8 @@
 
 					}
 					this.PrepareSendList = array
+					this.tableData2 = []
+					this.tableData2 = this.PrepareSendList
 					
 				}).catch(function(error) {
 					console.log("error", error);
@@ -3353,7 +3297,7 @@
 						// dd.Gender = MapTable.get(dd.Gender)
 
 						// console.log(dd.age+"这是我设置的");
-						// this.perinfo = dd
+						this.perinfo = dd
 						// console.log(this.perinfo)
 
 					}).catch(function(error) {
@@ -3498,9 +3442,8 @@
 					})
 			},
 			refresh(PatientId) {
-
+				console.log('refresh')
 				this.getPatientInfo(PatientId)
-
 				this.getPatientRecord(PatientId)
 			},
 
@@ -4075,7 +4018,7 @@ tr.el-table__row td .cell{
 		background-color: #050e3a;
 		margin-top: 20px;
 		margin-bottom: 30px;
-		margin-left: 30px;
+		margin-left: 10px;
 	    
 	}
 

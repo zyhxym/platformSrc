@@ -1,6 +1,9 @@
 <template>
   <div class="bg">
-    
+    <audio controls="controls" hidden src="./static/media/alert.wav" ref="audio"></audio>
+    <audio controls="controls" hidden src="./static/media/message.mp3" ref="audio1"></audio>
+    <button hidden ref="playBtn" @click="startPlay">播放</button>
+    <button hidden ref="playBtn1" @click="startPlay1">播放1</button>
     <img src="../assets/newheader3.jpg">
  
     <div class="wrapper">
@@ -135,7 +138,7 @@ export default {
           news: function (data) {
             //收到的消息会在这里
             console.log('首页 收到普通消息')
-
+            this.$refs.playBtn1.click()
             this.$notify.info({
               title: '通知',
               message: data.MessageTitle,
@@ -146,6 +149,7 @@ export default {
           
           news1: function (data) {
             console.log('我知道了2');
+            this.$refs.playBtn1.click()
             this.$notify.info({
               title: '通知',
               message: data.MessageTitle,
@@ -157,8 +161,7 @@ export default {
           alert: function (data) {
             //收到的消息会在这里
             console.log('首页 收到病人求助消息')
-            // console.log(data)
-            
+            this.$refs.playBtn.click()
             this.$notify({
               title: '上报病人',
               message: data.MessageTitle,
@@ -169,7 +172,7 @@ export default {
           },
 
           alert0: function (data) {
-
+            this.$refs.playBtn1.click()
             this.$notify({
               title: '上报病人',
               message: data.MessageTitle,
@@ -182,7 +185,7 @@ export default {
           help: function (data) {
               //收到的消息会在这里
               console.log('首页 收到普通求助消息')
-
+              this.$refs.playBtn1.click()
               this.$notify({
                 title: '请求远程支持',
                 message: data.MessageTitle,
@@ -237,10 +240,14 @@ export default {
       voiceColor: null,
       recorder: null,
       ws:null,
-      recording:0
+      recording:0,
+      sound:null
     }
   },
   mounted() {
+
+
+
     this.getTime();
     this.getAllStatusCount();
 
@@ -507,6 +514,14 @@ export default {
     handleClose(done) {
 				done();
 		},
+    startPlay() {
+      this.$refs.audio.currentTime = 0 // 从头开始播放提示音
+      this.$refs.audio.play()
+    },
+    startPlay1() {
+      this.$refs.audio1.currentTime = 0 // 从头开始播放提示音
+      this.$refs.audio1.play()
+    },
     reload() {
       this.isRouterAlive = false
       this.$nextTick(function () {

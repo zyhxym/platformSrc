@@ -334,14 +334,14 @@
 
 			//取消闪烁按钮
 			cancelFlash() {
-				console.log('收到取消短讯')
+				console.log('取消闪烁')
 				var that = this;
 				console.log(that)
 				for (var j = 0; j < that.marker.length; j++) {
 					that.marker[j].hide();
 				}
 			},
-
+			//绘制车辆路线函数，输入路线编号、车辆状态1去现场2去医院、三点位置包括lng/lat
 			render(pathNum, status, poscar, posass, poshos) {
 				var that = this
 				if (status == 1) {
@@ -394,7 +394,7 @@
 					that.pathSimplifierIns[pathNum].setData([]);
 				}
 			},
-
+			//给场馆预置svgmarker，报警时显示用
 			creatMarker(mapObj) {
 				var that = this
 				for (var i = 0; i < that.positionAss.length; i++) {
@@ -465,8 +465,8 @@
 
 
 				let mapObj = new AMap.Map('map-container', {
-					// center: [120.154539, 30.265048],
-					center: [120.581828, 30.621622],
+					center: [120.176438,30.250178],
+					//center: [120.581828, 30.621622],
 					zoom: 13,
 					mapStyle: 'amap://styles/13abf62ec70473a0b00e5e133ba93014',
 				})
@@ -487,44 +487,46 @@
 					}))
 
 				})
-				var options = {
-					enableHighAccuracy: true,
-					maximumAge: 0
-				}
-				var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+				//----------------------------------获取本地地址--------------------------
+				// var options = {
+				// 	enableHighAccuracy: true,
+				// 	maximumAge: 0
+				// }
+				// var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
-				function onSuccess(position) {
-					var gps = [position.coords.longitude, position.coords.latitude];
+				// function onSuccess(position) {
+				// 	var gps = [position.coords.longitude, position.coords.latitude];
 
-					AMap.convertFrom(gps, 'gps', function(status, result) {
-						lnglats = result.locations[0];
-						mapObj.setCenter(lnglats)
-						marker = new AMap.Marker({
-							position: lnglats,
-							map: mapObj
-						})
+				// 	AMap.convertFrom(gps, 'gps', function(status, result) {
+				// 		lnglats = result.locations[0];
+				// 		mapObj.setCenter(lnglats)
+				// 		marker = new AMap.Marker({
+				// 			position: lnglats,
+				// 			map: mapObj
+				// 		})
 
-						AMap.event.addListener(marker, 'click', (e) => {
+				// 		AMap.event.addListener(marker, 'click', (e) => {
 
-							//信息弹窗
-							AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
-								var infoWindow = new SimpleInfoWindow({
-									infoTitle: '<strong class="text-blue font-18 font-blod">我在这里</strong>',
-									infoBody: '',
-									offset: new AMap.Pixel(0, -20),
-									autoMove: true
-								})
-								infoWindow.open(mapObj, e.target.getPosition())
-							})
+				// 			//信息弹窗
+				// 			AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
+				// 				var infoWindow = new SimpleInfoWindow({
+				// 					infoTitle: '<strong class="text-blue font-18 font-blod">我在这里</strong>',
+				// 					infoBody: '',
+				// 					offset: new AMap.Pixel(0, -20),
+				// 					autoMove: true
+				// 				})
+				// 				infoWindow.open(mapObj, e.target.getPosition())
+				// 			})
 
-						})
+				// 		})
 
-					});
-				};
+				// 	});
+				// };
 
-				function onError(error) {
-					// alert('code: ' + error.code    + '\n' + 'message: ' + error.message + '\n');
-				}
+				// function onError(error) {
+				// 	// alert('code: ' + error.code    + '\n' + 'message: ' + error.message + '\n');
+				// }
+				//-----------------------------------获取本地地址结束------------------------------
 
 				AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
 					// if (!SimpleMarker.supportSvg) {

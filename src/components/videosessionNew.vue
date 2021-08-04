@@ -194,7 +194,7 @@ export default {
       //判断现场还是眼镜 GYX 19/9/14
       showass: true,
       showcar: true,
-
+      GNo:'',
       showPatinfo: false,
       perinfo: {},
       ExpertList: [],
@@ -208,53 +208,66 @@ export default {
 
       // 右侧树形图控件
       data: [{
-          label: '急救站组',
-          children: [{
-            label: '急救站1',
-           
-          },
-          {
-            label: '急救站2',
-            
-          }]
+              label: '现场医疗组',
+              children: [{
+                
+                label: '杭州奥体中心',
+              
+              },
+              {
+                label: '黄龙体育中心',
+                
+              },
+              {
+                label: '大运河亚运公园',
+                
+              }]
+
         }, {
-          label: '救护车组',
-          children: [{
-            label: '救护车1',
-            
-          }, {
-            label: '救护车2',
-           
-          }]
+                label: '救护车组',
+                children: [{
+                  label: '救护车1',
+                  
+                }, {
+                  label: '救护车2',
+                
+                }]
+
         }, {
-          label: '医院组',
-          children: [{
-            label: '医院1',
-            
-          }, {
-            label: '医院2',
-           
-          }]
+                label: '医院组',
+                children: [{
+                  label: '浙医二院',
+                  
+                }, {
+                  label: '杭州市第一人民医院',
+                
+                },
+                {
+                  label: '浙江省人民医院',
+                
+                }]
+
         },{
-          label: '后勤组',
-          children: [{
-            label: '后勤人员1',
-            
-          }, {
-            label: '后勤人员2',
-           
-          }]
+
+                label: '后勤组',
+                children: [{
+                  label: '后勤人员1',
+                  
+                }, {
+                  label: '后勤人员2',
+                
+                }]
 
         },
         {
-          label: '专家组',
-          children: [{
-            label: '专家1',
-            
-          }, {
-            label: '专家2',
-           
-          }]
+                label: '专家组',
+                children: [{
+                  label: '专家1',
+                  
+                }, {
+                  label: '专家2',
+                
+                }]
 
         },
         {
@@ -652,8 +665,99 @@ export default {
 
     //  下面这个handle是树形控件的
      handleNodeClick(data) {
-        console.log(data);
+
+        console.log('树形控件已点击', '这个树形控件的标签是：',data.label,'这个树形控件的孩子是：', data.children)
+             
+            if( data.label == '杭州奥体中心' ){
+
+              this.GNo = 'G01'
+
+            }else if( data.label == '黄龙体育中心' ){
+
+              this.GNo = 'G02'
+
+            }else if( data.label == '大运河亚运公园' ){
+
+              this.GNo = 'G11'
+
+            }else if( data.label == '救护车1' ){
+
+              this.GNo = 'G03'
+
+            }else if( data.label == '救护车2' ){
+
+              this.GNo = 'G04'
+
+            }else if( data.label == '浙医二院' ){
+
+              this.GNo = 'G05'
+
+            }else if( data.label == '杭州市第一人民医院' ){
+
+              this.GNo = 'G06'
+
+            }else if( data.label == '浙江省人民医院' ){
+
+              this.GNo = 'G33'
+
+            }else if( data.label == '专家1' ){
+
+              this.GNo = 'G90'
+
+            }else if( data.label == '专家2' ){
+
+              this.GNo = 'G91'
+
+            
+            }else{
+              this.GNo = ''
+            }
+
+           //传组别过去
+            axios.post('/pushVideoLeader', {
+
+                "GN": this.GNo
+
+            }).then((response) => {
+
+                 if(this.GNo == 'G01' ){
+                   this.$message('已发送视频邀请给杭州奥体中心急救站')
+
+                 }else if(this.GNo == 'G02' ){
+                   this.$message('已发送视频邀请给黄龙体育中心急救站')
+
+                 }else if(this.GNo == 'G11' ){
+                   this.$message('已发送视频邀请给大运河亚运公园急救站')
+
+                 }else if(this.GNo == 'G03' ){
+                   this.$message('已发送视频邀请给救护车1')
+
+                 }else if(this.GNo == 'G04' ){
+                   this.$message('已发送视频邀请给救护车2')
+
+                 }else if(this.GNo == 'G05' ){
+                   this.$message('已发送视频邀请给浙医二院')
+
+                 }else if(this.GNo == 'G06' ){
+                   this.$message('已发送视频邀请给杭州市第一人民医院')
+
+                 }else if(this.GNo == 'G33' ){
+                   this.$message('已发送视频邀请给浙江省人民医院')
+
+                 }else if(this.GNo == 'G90' ){
+                   this.$message('已发送视频邀请给专家1')
+
+                 }else if(this.GNo == 'G91' ){
+                   this.$message('已发送视频邀请给专家2')
+                 }
+
+
+            }).catch(function(error) {
+                console.log("error", error);
+            }) 
+                     
      },
+     
 
 
     sendinfo() {
